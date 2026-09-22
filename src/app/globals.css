@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/*
+  Token desain Cursed Crystal.
+
+  Palet: charcoal hangat sebagai dasar (bukan hitam pekat, supaya kartu dan
+  border masih terbaca), oranye lava sebagai satu-satunya aksen brand
+  (dipetakan dari Tambora/Inferno Island di dalam game), putih hangat untuk
+  teks utama. Rarity punya skala warnanya sendiri (lihat lib/format.ts)
+  karena itu sistem fungsional, bukan bagian dari palet brand.
+*/
+:root {
+  --color-base: #141110;
+  --color-surface: #1c1815;
+  --color-surface-raised: #241f1b;
+  --color-border: #33291f;
+  --color-border-strong: #4a3a28;
+  --color-text: #ede8e1;
+  --color-text-muted: #a89a8c;
+  --color-text-faint: #6f6357;
+  --color-accent: #ff6a2b;
+  --color-accent-strong: #ff8a4c;
+  --color-accent-muted: #7a3a1c;
+}
+
+@theme inline {
+  --color-base: var(--color-base);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-faint: var(--color-text-faint);
+  --color-accent: var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
+  --color-accent-muted: var(--color-accent-muted);
+
+  --font-display: var(--font-display), "Arial Black", sans-serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+/* Focus state konsisten dan terlihat jelas untuk navigasi keyboard (R-32). */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Motif identitas: sudut terpotong (faceted cut), dipakai untuk kartu gambar
+   item supaya terasa seperti potongan kristal, bukan rounded-rect generik. */
+.facet-corner {
+  clip-path: polygon(
+    12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px
+  );
+}
+
+.facet-corner-sm {
+  clip-path: polygon(
+    8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px
+  );
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #141110;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
